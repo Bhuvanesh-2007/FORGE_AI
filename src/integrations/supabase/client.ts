@@ -42,8 +42,14 @@ function createSupabaseClient() {
     ];
     const message = `Missing Supabase environment variable(s): ${missing.join(', ')}. Connect Supabase in Lovable Cloud.`;
     console.error(`[Supabase] ${message}`);
+    console.error('[Supabase] Debug: checked sources:', {
+      VITE_SUPABASE_URL: import.meta.env.VITE_SUPABASE_URL ? '✓ set' : '✗ missing',
+      SUPABASE_URL_env: import.meta.env.SUPABASE_URL ? '✓ set' : '✗ missing',
+      SUPABASE_URL_process: process.env.SUPABASE_URL ? '✓ set' : '✗ missing',
+    });
     throw new Error(message);
   }
+
 
   return createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
     global: {
