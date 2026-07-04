@@ -12,4 +12,10 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  define: {
+    "import.meta.env.SUPABASE_URL": process.env.SUPABASE_URL ? JSON.stringify(process.env.SUPABASE_URL) : undefined,
+    "import.meta.env.SUPABASE_PUBLISHABLE_KEY": process.env.SUPABASE_PUBLISHABLE_KEY
+      ? JSON.stringify(process.env.SUPABASE_PUBLISHABLE_KEY)
+      : undefined,
+  },
 });
